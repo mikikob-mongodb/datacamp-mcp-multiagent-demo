@@ -282,6 +282,28 @@ make run
 
 ---
 
+## 💡 Inspired By
+
+This project was inspired by Julia Evans' concept of **[Brag Documents](https://jvns.ca/blog/brag-documents/)** - a systematic approach to tracking your accomplishments for performance reviews and promotions.
+
+**The Problem Julia Identified:**
+> "There's this idea that, if you do great work at your job, people will (or should!) automatically recognize that work and reward you for it with promotions / increased pay. In practice, it's often more complicated than that."
+
+**Our Solution:**
+While Julia's brag document is a manual process, **Promotion Advisor automates the hard parts**:
+- ✅ **Structured extraction** → Turn free-form project descriptions into organized, metrics-backed records
+- ✅ **Gap analysis** → Compare your achievements against target role requirements
+- ✅ **Industry benchmarking** → Include salary data and real role expectations
+- ✅ **Mentor discovery** → Find people who've successfully made similar transitions
+- ✅ **Executive-ready output** → Generate polished reports that managers actually read
+
+**We're building on Julia's wisdom with AI tooling**, making it easier to maintain your professional narrative and advocate for yourself effectively.
+
+**Read Julia's original post:** [Get your work recognized: write a brag document](https://jvns.ca/blog/brag-documents/)
+
+
+---
+
 ## 🎯 Future Enhancements
 
 **Planned features:**
@@ -333,16 +355,55 @@ MIT License - see LICENSE file for details
 
 ## 🌟 Explore More
 
+### 🔧 MongoDB AI Resources
+
 **Interested in building production-grade AI applications with MongoDB?**
 
-👉 **[MongoDB AI Applications Hub](https://github.com/mongodb-developer/GenAI-Showcase)**  
-👉 **[LangChain + MongoDB Integration](https://www.mongodb.com/docs/atlas/ai-integrations/langchain/)**  
-👉 **[MongoDB Developer Center](https://www.mongodb.com/resources/use-cases/artificial-intelligence)**
+👉 **[MongoDB GenAI Showcase](https://github.com/mongodb-developer/GenAI-Showcase)** - Collection of production-ready AI application patterns and examples
 
-**Related Projects:**
-- [LangGraph Documentation](https://pypi.org/project/langgraph-checkpoint-mongodb/)
-- [Gradio Documentation](https://www.gradio.app/docs/)
-- [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
+👉 **[LangChain + MongoDB Integration](https://www.mongodb.com/docs/atlas/ai-integrations/langchain/)** - Official documentation for using MongoDB Atlas with LangChain
+
+👉 **[MongoDB AI Use Cases](https://www.mongodb.com/resources/use-cases/artificial-intelligence)** - Real-world AI applications built on MongoDB
+
+### 📚 Core Technologies
+
+**LangGraph & Multi-Agent Systems:**
+- **[LangGraph Checkpoint MongoDB](https://pypi.org/project/langgraph-checkpoint-mongodb/)** - Persistent state management for LangGraph workflows
+- **[LangGraph Supervisor Pattern](https://docs.langchain.com/oss/python/langchain/supervisor)** - Router-based multi-agent orchestration (used in this project)
+- **[Building Multi-Agent Systems with LangGraph](https://levelup.gitconnected.com/building-a-multi-agent-ai-system-with-langgraph-and-langsmith-6cb70487cd81)** - Tutorial on agent coordination and monitoring
+
+**Model Context Protocol (MCP):**
+- **[MCP Documentation](https://modelcontextprotocol.io/)** - Official MCP specification and guides
+- **[LangChain MCP Adapters](https://changelog.langchain.com/announcements/mcp-adapters-for-langchain-and-langgraph)** - Integrate external tools and data sources (Tavily, GitHub, etc.)
+- **[MCP Adapters GitHub](https://github.com/langchain-ai/langchain-mcp-adapters)** - Implementation details and examples
+
+**UI & Deployment:**
+- **[Gradio Documentation](https://www.gradio.app/docs/)** - Rapid ML/AI UI prototyping
+- **[Agentic RAG with LangGraph](https://docs.langchain.com/oss/python/langgraph/agentic-rag)** - Advanced retrieval patterns
+
+### 📖 Tutorials & Inspiration
+
+**MongoDB + MCP Integration:**
+- **[Building AI Agents with MongoDB MCP](https://medium.com/@SojeongBaek/building-ai-agent-with-mongodb-mcp-1339516643c8)** - Step-by-step agent construction
+- **[MongoDB Chat Agent with MCP](https://blog.gopenai.com/langgraph-tutorial-4-build-a-mongodb-chat-agent-with-mcp-88e27602b4b9)** - LangGraph tutorial with persistent memory
+
+**Search & Research:**
+- **[LinkedIn Profile Search with Tavily](https://docs.tavily.com/examples/quick-tutorials/linkedin-profile-search)** - Finding professionals by role (used in Mentor Finder agent)
+
+**Career Development:**
+- **[Brag Documents](https://jvns.ca/blog/brag-documents/)** by Julia Evans - The manual process this tool automates
+
+### 🎓 Learn More
+
+**Want to dive deeper into multi-agent systems?**
+- Start with the [LangGraph Supervisor Pattern](https://docs.langchain.com/oss/python/langchain/supervisor) to understand routing
+- Explore [MongoDB Atlas Vector Search](https://www.mongodb.com/products/platform/atlas-vector-search) for semantic search
+- Check out the [GenAI Showcase](https://github.com/mongodb-developer/GenAI-Showcase) for more production patterns
+
+**Questions or want to contribute?**
+- Open an [issue on GitHub](https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo/issues)
+- Join the [MongoDB Community Forums](https://www.mongodb.com/community/forums/)
+- Connect on [LinkedIn](https://www.linkedin.com/in/your-profile/) *(add your link)*
 
 ---
 
