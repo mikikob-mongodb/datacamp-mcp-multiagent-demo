@@ -21,9 +21,6 @@ A **practical AI workflow** that helps you prepare for career advancement:
 
 **📺 Watch the full demo walkthrough:** [AI-Powered Promotion Advisor - Complete Demo (3 min)](https://youtu.be/mYr4xmX3lgA)
 
-[![Promotion Advisor Demo](https://img.youtube.com/vi/QmQUIXzQ7To/maxresdefault.jpg)](https://youtu.be/QmQUIXzQ7To)
-
-*Click the image above to watch the full demonstration on YouTube*
 
 <details>
 <summary>📸 More Screenshots</summary>
