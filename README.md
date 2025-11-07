@@ -17,9 +17,7 @@ A **practical AI workflow** that helps you prepare for career advancement:
 ---
 ## 🎬 See It In Action
 
-![Promotion Advisor Demo](demo.gif)
-
-**Watch full walkthrough:** [2-minute demo video](https://www.loom.com/share/your-video-id) 📺
+![Workflow](screenshots/app-finished-running.png)
 
 <details>
 <summary>📸 More Screenshots</summary>
