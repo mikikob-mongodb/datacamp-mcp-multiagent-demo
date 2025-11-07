@@ -1,4 +1,62 @@
 __pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
 *.pyc
 *.pyo
 *.pyd
+
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Linting/Formatting
+.ruff_cache/
+.mypy_cache/
+.black/
+
+# Gradio
+.gradio/
+outputs/
+flagged/
+
+# MongoDB
+*.mongodb
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+tmp/
+temp/
+
+# OS
+Thumbs.db
+.DS_Store

@@ -1,204 +1,419 @@
-# Promotion Tycoon — Multi-Agent Promotion Advisor (LangGraph + MongoDB Atlas + Gradio)
+# Promotion Advisor — Multi-Agent System with LangGraph + MongoDB Atlas
 
-> Build a **promotion packet** with AI: define a target role, add your projects, generate an impact report, and discover mentor profiles — all persisted in **MongoDB Atlas**, orchestrated with **LangGraph**, and wrapped in a clean **Gradio** UI. Optional **MCP (Tavily)** enriches analysis with industry research.
-
----
-
-## What this project is about
-
-A **developer-friendly demo** that shows a practical, end-to-end **agentic workflow** for career growth:
-
-- **Target Role Builder** → parses your goal (e.g., *AI Engineer, Staff PM, Director of Data*) and sets expectations  
-- **Project Curator** → extracts structured, evidence-backed project records from free text  
-- **Impact Analyzer** → produces an executive-ready report (strengths, gaps, recommendations), optionally citing industry research  
-- **Mentor Finder** → surfaces similar roles on LinkedIn (via Tavily MCP)
-
-It demonstrates how to move **beyond stateless chat** into an app with **memory, structure, and repeatability**.
+> AI-powered promotion packet preparation: define your target role, document your projects, generate an impact analysis, and discover similar professionals — all orchestrated with **LangGraph**, persisted in **MongoDB Atlas**, and wrapped in a **Gradio** UI.
 
 ---
 
-## What it’s showing (key concepts)
+## 🎯 What This Does
 
-- **MongoDB Atlas** as the **system memory** and **LangGraph checkpointer**  
-  (Atlas by default; optional *Demo Mode* uses pure in-memory)  
-- **LangGraph** for **multi-agent routing**, **interrupt/resume**, and **checkpoints**  
-- **Pydantic models** for typed, structured records (role, projects, report)  
-- **Gradio** UI that’s simple, resilient, and demo-ready  
-- **Optional MCP (Tavily)** to pull in industry insights/salary bands
+A **practical AI workflow** that helps you prepare for career advancement:
+
+- **🎯 Target Role Builder** → Define your promotion goal (e.g., *Staff Engineer*, *Senior PM*, *VP of AI*)
+- **📁 Project Curator** → Extract structured project records with metrics from free text  
+- **📊 Impact Analyzer** → Generate executive-ready reports with strengths, gaps, and recommendations
+- **👥 Mentor Finder** → Discover similar professionals on LinkedIn (via Tavily search)
+- **⬇️ Export** → Download a complete promotion packet in Markdown
+
+---
+## 🎬 See It In Action
+
+![Workflow](screenshots/app-finished-running.png)
+
+**📺 Watch the full demo walkthrough:** [AI-Powered Promotion Advisor - Complete Demo (3 min)](https://youtu.be/mYr4xmX3lgA)
+
+[![Promotion Advisor Demo](https://img.youtube.com/vi/QmQUIXzQ7To/maxresdefault.jpg)](https://youtu.be/QmQUIXzQ7To)
+
+*Click the image above to watch the full demonstration on YouTube*
+
+<details>
+<summary>📸 More Screenshots</summary>
+
+### Initial Interface
+![Clean UI](screenshots/whole-app-clean.png)
+
+
+### Complete Workflow
+![Top Panel](screenshots/whole-app-top.png)
+---
+![Middle Panel](screenshots/whole-app-middle.png)
+---
+![Bottom Panel](screenshots/whole-app-end.png)
+
+### Generated Impact Report
+![Impact report with industry data](screenshots/components-impact-report.png)
+
+### Agent Execution Trace
+![Technical workflow](screenshots/component-execution-trace.png)
+
+</details>
 
 ---
 
-## User workflow
+## 🚀 Quick Start
 
-1. **Start the app** → a chat prompt asks: *“What role are you targeting?”*  
-2. **Define target role** → the agent parses role & level; sets focus areas & metrics.  
-3. **Add projects** → paste one or more projects; the app extracts context/actions/outcomes/metrics.  
-4. **Generate impact report** → strengths, gaps, concrete recommendations;  
-   if Tavily is enabled, it includes **sources and salary ranges**.  
-5. **Find mentors (optional)** → see relevant LinkedIn profiles to contact.  
-6. **Export** → download a Markdown *Promotion Packet* for your brag doc or review cycles.
+### 1. Clone the repository
+```bash
+git clone https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo.git
+cd datacamp-mcp-multiagent-demo
+git checkout v1_webinar_version
+```
+
+### 2. Set up environment variables
+```bash
+cp env.template .env
+```
+
+Edit `.env` and add your API keys:
+```env
+OPENAI_API_KEY=sk-your-key-here
+MONGODB_URI=mongodb+srv://your-connection-string
+TAVILY_API_KEY=tvly-your-key-here  # Optional
+```
+
+**Get your API keys:**
+- **OpenAI**: https://platform.openai.com/api-keys ($5 minimum credit)
+- **MongoDB Atlas**: https://www.mongodb.com/cloud/atlas/register (free M0 cluster)
+- **Tavily** *(optional)*: https://tavily.com (1,000 free searches/month)
+
+### 3. Install dependencies
+```bash
+make setup
+```
+
+This will:
+- Kill any processes on port 7860
+- Create a virtual environment
+- Install all required packages
+- Set up development tools (linters/formatters)
+
+### 4. Run the application
+```bash
+source .venv/bin/activate  # Windows: .venv\Scripts\activate
+make run
+```
+
+Open your browser to: **http://localhost:7860**
 
 ---
 
-## Requirements & dependencies
+## 📋 How It Works
 
-**Runtime**
-- Python **3.10+**
-- `make` *(optional convenience)*
-
-**Core Python deps** (pinned in `requirements.txt`)
-- `gradio`, `pydantic`, `pymongo`, `python-dotenv`  
-- `langchain-core`, `langchain-openai`, `langgraph`  
-- *(optional)* `langchain-mcp-adapters` for Tavily MCP
-
-**Accounts / keys**
-- **MongoDB Atlas** SRV URI (`mongodb+srv://...`)  
-- **OpenAI API key**  
-- *(optional)* **Tavily API key** for industry research
+1. **Start** → Chat interface asks: *"What role are you targeting?"*
+2. **Define Role** → AI parses your goal and sets expectations (focus areas, responsibilities, success metrics)
+3. **Add Projects** → Paste project descriptions; AI extracts context, actions, outcomes, and metrics
+4. **Generate Report** → Get executive-ready impact analysis with:
+   - Strengths backed by specific evidence
+   - Gaps to address
+   - Actionable recommendations
+   - Industry salary data (if Tavily enabled)
+5. **Find Mentors** *(optional)* → Discover LinkedIn profiles of professionals in similar roles
+6. **Download** → Export complete promotion packet as Markdown
 
 ---
 
-## Project layout
+## 🛠️ Development Commands
+
+### Available Make Commands
+
+```bash
+make setup       # Create venv and install all dependencies
+make run         # Run the application (kills port first)
+make lint        # Check code for issues
+make format      # Auto-fix and format code
+make clean       # Remove cache files
+make clean-all   # Remove cache files AND venv
+make kill-ports  # Kill process on port 7860
+make help        # Show all available commands
+```
+
+### Full Reset Script
+
+For a complete fresh start (useful during development or debugging):
+
+```bash
+./reset.sh
+```
+
+**What `reset.sh` does:**
+1. Checks if you're in a virtual environment and warns you
+2. Deactivates the venv (within the script's context)
+3. Runs `make clean-all` to remove all caches and the venv directory
+4. Runs `make setup` to create a fresh environment and install dependencies
+5. Provides clear instructions for activating the new environment
+
+**After running `reset.sh`, activate the new environment:**
+```bash
+source .venv/bin/activate && make run
+```
+
+**Note:** The script cannot automatically activate the venv in your terminal (this is a fundamental shell limitation). Your terminal prompt may still show `(.venv)` after the reset, but the old environment has been removed and a fresh one created. Simply run the activation command above to use the new environment.
+
+---
+
+## 📁 Project Structure
 
 ```
 promotion_tycoon/
-  graph/
-    nodes/                # individual agent nodes
-    assemble.py           # builds StateGraph + conditional routing
-  config.py               # env loading & Atlas-or-Demo policy
-  storage.py              # Atlas CRUD + LangGraph checkpointer
-  prompts.py              # all system prompts (single source of truth)
-  tracing.py              # pretty audit log for the UI
-  models.py               # Pydantic models + WorkflowState
-  ui.py                   # Gradio UI wiring + handlers
-  main.py                 # app entrypoint (python -m promotion_tycoon.main)
+  ├── main.py              # Application entry point
+  ├── config.py            # Environment configuration
+  ├── storage.py           # MongoDB operations & checkpointer
+  ├── models.py            # Pydantic data models
+  ├── prompts.py           # System prompts
+  ├── tracing.py           # Execution logging
+  └── ui.py                # Gradio interface
+
+├── env.template           # Environment variables template
+├── Makefile              # Build and run commands
+├── reset.sh              # Development reset script
+└── README.md             # This file
 ```
 
 ---
 
-## Get started
+## 🔧 Configuration
 
-1) **Clone & enter**
-```bash
-git clone <your-repo-url>
-cd <repo>
-```
+### Environment Variables (.env)
 
-2) **Create env file**
-```bash
-cp .env.template .env
-# edit .env with:
-# MONGODB_URI=mongodb+srv://<user>:<pass>@<cluster>.mongodb.net/?retryWrites=true&w=majority&appName=Promotion-Tycoon
-# OPENAI_API_KEY=sk-...
-# (optional) TAVILY_API_KEY=...
-```
-
-3) **Install**
-```bash
-python -m venv .venv
-. .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -U pip
-pip install -r requirements.txt
-```
-
-4) **Run**
-```bash
-python -m promotion_tycoon.main
-# open http://localhost:7860
-```
-
-> **Atlas-only by default.** To run a no-network demo, set `DEMO_MODE=true` in `.env` to use in-memory (no DB).
-
----
-
-## Makefile (optional)
-
-Minimal targets:
-```bash
-make setup     # venv + install deps + linters/formatters
-make run       # start app
-make lint      # ruff check
-make format    # ruff --fix, isort, black
-make clean     # remove caches & outputs
-```
-
----
-
-## Configuration (.env)
-
-```dotenv
-# REQUIRED (unless DEMO_MODE=true)
-MONGODB_URI=mongodb+srv://...
-DATABASE_NAME=promotion_advisor
-
-# REQUIRED
+```env
+# Required
 OPENAI_API_KEY=sk-...
+MONGODB_URI=mongodb+srv://...
 
-# OPTIONAL
-TAVILY_API_KEY=
-GRADIO_SERVER_NAME=0.0.0.0
-GRADIO_SERVER_PORT=7860
-
-# Demo mode: skip DB, use in-memory (for workshops/offline demos)
-DEMO_MODE=false
+# Optional
+TAVILY_API_KEY=tvly-...           # For industry research
+DATABASE_NAME=promotion_advisor    # Default database name
+GRADIO_SERVER_PORT=7860           # Default port
 ```
 
-- Fails fast if Atlas is missing/misconfigured (unless `DEMO_MODE=true`).  
-- If Tavily is absent, industry research is skipped gracefully.
+### MongoDB Atlas Setup
+
+1. **Create a free M0 cluster** at https://www.mongodb.com/cloud/atlas
+2. **Create a database user** with read/write permissions
+3. **Get your connection string** (looks like `mongodb+srv://username:password@cluster.mongodb.net/`)
+4. **Whitelist your IP** in Network Access settings
+5. **Add to `.env` file**
+
+**Fallback behavior:** If MongoDB is unavailable, the app automatically falls back to in-memory storage with a warning message in the logs.
 
 ---
 
-## Screenshots / demo
+## 🎓 Key Concepts Demonstrated
 
-Add 1–2 screenshots or a short GIF showing:
-- Initial prompt (target role)
-- Projects populated
-- Generated impact report
-- (Optional) mentor panel
+This project showcases several advanced patterns for building production-ready AI applications:
 
----
-
-## Future work
-
-- **File uploads** (resume/JD) → auto-parse into structured projects/role expectations  
-- **Inline editing** for projects & metrics in the UI  
-- **Export to PDF** and/or Google Docs template  
-- **Team mode** for reviewers and comments  
-- **Advanced mentor search** (filters by company/region/seniority)  
-- **Model adapters** for other providers / local models  
-
-**New items (planned):**
-- **Vector & Hybrid Search with MongoDB Atlas**  
-  - Store embeddings alongside operational data; use Atlas Vector Search + **hybrid (BM25 + vector)** queries to enrich role/mentor matching and project retrieval.  
-- **Embeddings & Reranking with Voyage**  
-  - Use **Voyage** embeddings for high-quality semantic representations and **reranking** to boost report quality and mentor results.  
-- **Monitoring & Observability**  
-  - Add traces/metrics for agents, LLM cost/latency, prompt success rates; dashboards for **app health**, **LLM usage**, and **quality signals** (e.g., Prometheus/Grafana, OpenTelemetry).
+- **Multi-Agent Orchestration** → LangGraph manages routing between specialized agents
+- **Interrupt/Resume Patterns** → Human-in-the-loop workflows with checkpoint/resume
+- **Structured Data Extraction** → Pydantic models ensure type safety and validation
+- **Persistent Memory** → MongoDB Atlas stores conversation state and checkpoints
+- **Industry Research Integration** → MCP (Model Context Protocol) with Tavily for real-time data
+- **Interactive UI** → Gradio provides rapid prototyping with production-ready interfaces
+- **Graceful Degradation** → App continues functioning even if external services fail
 
 ---
 
-## Troubleshooting
+## 🐛 Troubleshooting
 
-- **`RuntimeError: MONGODB_URI is required`**  
-  Create `.env` from `.env.template` and set an Atlas SRV URI, or use `DEMO_MODE=true`.
-- **MCP/Tavily timeouts**  
-  The app will fall back. Leave `TAVILY_API_KEY` blank to disable.
-- **Remote demos**  
-  Set `GRADIO_SERVER_NAME=0.0.0.0` and open port `7860` on your VM.
+### Port Already in Use
+
+If you see "Cannot find empty port" error:
+
+```bash
+make kill-ports
+make run
+```
+
+Or specify a different port in `.env`:
+```env
+GRADIO_SERVER_PORT=7861
+```
+
+### MongoDB Connection Failed
+
+**Symptoms:** `Authentication failed` or `Connection timeout`
+
+**Solutions:**
+- Verify your connection string in `.env` is correct
+- Check database user has proper read/write permissions
+- Ensure your IP address is whitelisted in Atlas Network Access
+- Test connection string with MongoDB Compass
+
+**The app will automatically fall back to in-memory storage if MongoDB is unavailable.**
+
+### Dependencies Not Installing
+
+Make sure you have Python 3.10+ installed:
+```bash
+python3 --version
+```
+
+If you encounter dependency conflicts:
+```bash
+./reset.sh  # Full clean reinstall
+```
+
+### Tavily Search Not Working
+
+**Symptoms:** No industry research or salary data in reports
+
+**Solutions:**
+- Verify `TAVILY_API_KEY` is set correctly in `.env`
+- Check you haven't exceeded free tier limits (1,000 searches/month)
+- Monitor execution trace panel in UI for Tavily-specific errors
+
+**Note:** The app works without Tavily but won't include industry research in reports.
+
+### Virtual Environment Issues
+
+If you see `(.venv)` in your prompt but commands fail:
+
+```bash
+deactivate
+./reset.sh
+source .venv/bin/activate
+make run
+```
+
+Or simply open a new terminal window:
+```bash
+cd datacamp-mcp-multiagent-demo
+source .venv/bin/activate
+make run
+```
 
 ---
 
-## Call to action — Explore the Gen-AI Showcase
+## 💡 Inspired By
+
+This project was inspired by Julia Evans' concept of **[Brag Documents](https://jvns.ca/blog/brag-documents/)** - a systematic approach to tracking your accomplishments for performance reviews and promotions.
+
+**The Problem Julia Identified:**
+> "There's this idea that, if you do great work at your job, people will (or should!) automatically recognize that work and reward you for it with promotions / increased pay. In practice, it's often more complicated than that."
+
+**Our Solution:**
+While Julia's brag document is a manual process, **Promotion Advisor automates the hard parts**:
+- ✅ **Structured extraction** → Turn free-form project descriptions into organized, metrics-backed records
+- ✅ **Gap analysis** → Compare your achievements against target role requirements
+- ✅ **Industry benchmarking** → Include salary data and real role expectations
+- ✅ **Mentor discovery** → Find people who've successfully made similar transitions
+- ✅ **Executive-ready output** → Generate polished reports that managers actually read
+
+**We're building on Julia's wisdom with AI tooling**, making it easier to maintain your professional narrative and advocate for yourself effectively.
+
+**Read Julia's original post:** [Get your work recognized: write a brag document](https://jvns.ca/blog/brag-documents/)
+
+
+---
+
+## 🎯 Future Enhancements
+
+**Planned features:**
+
+- **Vector & Hybrid Search** → MongoDB Atlas Vector Search for semantic project/mentor matching
+- **File Uploads** → Resume and job description parsing
+- **Embeddings & Reranking** → Voyage AI integration for improved search quality
+- **PDF Export** → Professional promotion packet documents
+- **Team Collaboration** → Multi-user review and comment features
+- **Advanced Mentor Filtering** → Search by company, location, seniority level
+- **Monitoring & Observability** → LLM cost tracking, latency metrics, quality dashboards
+- **Model Flexibility** → Support for additional LLM providers and local models
+
+---
+
+## 📺 Demo & Tutorial
+
+This project was created for the **DataCamp Multi-Agent Systems Webinar**.
+
+**Key topics covered:**
+- Building multi-agent systems with LangGraph
+- Persistent memory with MongoDB Atlas
+- Human-in-the-loop AI workflows
+- MCP integration for real-time data enrichment
+- Production deployment patterns
+
+---
+
+## 🤝 Contributing
+
+Issues and pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
+
+**Development workflow:**
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Run linters: `make format && make lint`
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+---
+
+## 📄 License
 
 If this demo sparked ideas, **check out the Gen-AI Showcase** for more hands-on examples of **agentic patterns**, **memory architectures**, and **MongoDB-backed AI apps**.  
 👉 **[Gen-AI Showcase]([https://example.com/showcase](https://github.com/mongodb-developer/GenAI-Showcase))** 
 
 ---
 
-### License
+## 🌟 Explore More
 
-MIT (or your preferred license). Add a `LICENSE` file to clarify usage.
+### 🔧 MongoDB AI Resources
+
+**Interested in building production-grade AI applications with MongoDB?**
+
+👉 **[MongoDB GenAI Showcase](https://github.com/mongodb-developer/GenAI-Showcase)** - Collection of production-ready AI application patterns and examples
+
+👉 **[LangChain + MongoDB Integration](https://www.mongodb.com/docs/atlas/ai-integrations/langchain/)** - Official documentation for using MongoDB Atlas with LangChain
+
+👉 **[MongoDB AI Use Cases](https://www.mongodb.com/resources/use-cases/artificial-intelligence)** - Real-world AI applications built on MongoDB
+
+### 📚 Core Technologies
+
+**LangGraph & Multi-Agent Systems:**
+- **[LangGraph Checkpoint MongoDB](https://pypi.org/project/langgraph-checkpoint-mongodb/)** - Persistent state management for LangGraph workflows
+- **[LangGraph Supervisor Pattern](https://docs.langchain.com/oss/python/langchain/supervisor)** - Router-based multi-agent orchestration (used in this project)
+- **[Building Multi-Agent Systems with LangGraph](https://levelup.gitconnected.com/building-a-multi-agent-ai-system-with-langgraph-and-langsmith-6cb70487cd81)** - Tutorial on agent coordination and monitoring
+
+**Model Context Protocol (MCP):**
+- **[MCP Documentation](https://modelcontextprotocol.io/)** - Official MCP specification and guides
+- **[LangChain MCP Adapters](https://changelog.langchain.com/announcements/mcp-adapters-for-langchain-and-langgraph)** - Integrate external tools and data sources (Tavily, GitHub, etc.)
+- **[MCP Adapters GitHub](https://github.com/langchain-ai/langchain-mcp-adapters)** - Implementation details and examples
+
+**UI & Deployment:**
+- **[Gradio Documentation](https://www.gradio.app/docs/)** - Rapid ML/AI UI prototyping
+- **[Agentic RAG with LangGraph](https://docs.langchain.com/oss/python/langgraph/agentic-rag)** - Advanced retrieval patterns
+
+### 📖 Tutorials & Inspiration
+
+**MongoDB + MCP Integration:**
+- **[Building AI Agents with MongoDB MCP](https://medium.com/@SojeongBaek/building-ai-agent-with-mongodb-mcp-1339516643c8)** - Step-by-step agent construction
+- **[MongoDB Chat Agent with MCP](https://blog.gopenai.com/langgraph-tutorial-4-build-a-mongodb-chat-agent-with-mcp-88e27602b4b9)** - LangGraph tutorial with persistent memory
+
+**Search & Research:**
+- **[LinkedIn Profile Search with Tavily](https://docs.tavily.com/examples/quick-tutorials/linkedin-profile-search)** - Finding professionals by role (used in Mentor Finder agent)
+
+**Career Development:**
+- **[Brag Documents](https://jvns.ca/blog/brag-documents/)** by Julia Evans - The manual process this tool automates
+
+### 🎓 Learn More
+
+**Want to dive deeper into multi-agent systems?**
+- Start with the [LangGraph Supervisor Pattern](https://docs.langchain.com/oss/python/langchain/supervisor) to understand routing
+- Explore [MongoDB Atlas Vector Search](https://www.mongodb.com/products/platform/atlas-vector-search) for semantic search
+- Check out the [GenAI Showcase](https://github.com/mongodb-developer/GenAI-Showcase) for more production patterns
+
+**Questions or want to contribute?**
+- Open an [issue on GitHub](https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo/issues)
+- Join the [MongoDB Community Forums](https://www.mongodb.com/community/forums/)
+- Connect on [LinkedIn](https://www.linkedin.com/in/your-profile/) *(add your link)*
 
 ---
 
-**Happy building!** If you ship something cool with this, open a PR to add it to the Showcase or share your story in Issues/Discussions.
+**Happy building!** If you create something cool with this project, share it with us or open a PR to showcase your work.
+
+---
+
+## 📞 Support
+
+- **Issues:** [GitHub Issues](https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo/issues)
+- **Discussions:** [GitHub Discussions](https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo/discussions)
+- **MongoDB Community:** [MongoDB Community Forums](https://www.mongodb.com/community/forums/)
