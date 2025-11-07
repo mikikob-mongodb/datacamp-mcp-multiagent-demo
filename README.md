@@ -368,6 +368,8 @@ If this demo sparked ideas, **check out the Gen-AI Showcase** for more hands-on 
 **LangGraph & Multi-Agent Systems:**
 - **[LangGraph Checkpoint MongoDB](https://pypi.org/project/langgraph-checkpoint-mongodb/)** - Persistent state management for LangGraph workflows
 - **[LangGraph Supervisor Pattern](https://docs.langchain.com/oss/python/langchain/supervisor)** - Router-based multi-agent orchestration (used in this project)
+- **[LangGraph Interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts)** - Pause/resume workflows for human review (powers our interrupt/resume pattern)
+- **[Human-in-the-Loop Workflows](https://docs.langchain.com/oss/python/langchain/human-in-the-loop)** - Interactive AI systems with user approval gates
 - **[Building Multi-Agent Systems with LangGraph](https://levelup.gitconnected.com/building-a-multi-agent-ai-system-with-langgraph-and-langsmith-6cb70487cd81)** - Tutorial on agent coordination and monitoring
 
 **Model Context Protocol (MCP):**
@@ -395,22 +397,12 @@ If this demo sparked ideas, **check out the Gen-AI Showcase** for more hands-on 
 
 **Want to dive deeper into multi-agent systems?**
 - Start with the [LangGraph Supervisor Pattern](https://docs.langchain.com/oss/python/langchain/supervisor) to understand routing
+- Learn about [interrupts](https://docs.langchain.com/oss/python/langgraph/interrupts) and [human-in-the-loop](https://docs.langchain.com/oss/python/langchain/human-in-the-loop) patterns used in this project
 - Explore [MongoDB Atlas Vector Search](https://www.mongodb.com/products/platform/atlas-vector-search) for semantic search
 - Check out the [GenAI Showcase](https://github.com/mongodb-developer/GenAI-Showcase) for more production patterns
 
 **Questions or want to contribute?**
 - Open an [issue on GitHub](https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo/issues)
 - Join the [MongoDB Community Forums](https://www.mongodb.com/community/forums/)
-- Connect on [LinkedIn](https://www.linkedin.com/in/your-profile/) *(add your link)*
+- Connect on [LinkedIn](https://www.linkedin.com/in/mikikobazeley/)
 
----
-
-**Happy building!** If you create something cool with this project, share it with us or open a PR to showcase your work.
-
----
-
-## 📞 Support
-
-- **Issues:** [GitHub Issues](https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo/issues)
-- **Discussions:** [GitHub Discussions](https://github.com/mikikob-mongodb/datacamp-mcp-multiagent-demo/discussions)
-- **MongoDB Community:** [MongoDB Community Forums](https://www.mongodb.com/community/forums/)
