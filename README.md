@@ -25,11 +25,14 @@ A **practical AI workflow** that helps you prepare for career advancement:
 <summary>📸 More Screenshots</summary>
 
 ### Initial Interface
-![Clean UI](screenshots/initial-state.png)
+![Clean UI](screenshots/whole-app-clean.png)
+
 
 ### Complete Workflow
 ![Top Panel](screenshots/whole-app-top.png)
+---
 ![Middle Panel](screenshots/whole-app-middle.png)
+---
 ![Bottom Panel](screenshots/whole-app-end.png)
 
 ### Generated Impact Report
@@ -328,12 +331,12 @@ MIT License - see LICENSE file for details
 
 **Interested in building production-grade AI applications with MongoDB?**
 
-👉 **[MongoDB AI Applications Hub](https://www.mongodb.com/products/ai)**  
-👉 **[LangChain + MongoDB Integration](https://python.langchain.com/docs/integrations/vectorstores/mongodb_atlas)**  
-👉 **[MongoDB Developer Center](https://www.mongodb.com/developer/)**
+👉 **[MongoDB AI Applications Hub](https://github.com/mongodb-developer/GenAI-Showcase)**  
+👉 **[LangChain + MongoDB Integration](https://www.mongodb.com/docs/atlas/ai-integrations/langchain/)**  
+👉 **[MongoDB Developer Center](https://www.mongodb.com/resources/use-cases/artificial-intelligence)**
 
 **Related Projects:**
-- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+- [LangGraph Documentation](https://pypi.org/project/langgraph-checkpoint-mongodb/)
 - [Gradio Documentation](https://www.gradio.app/docs/)
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
 
